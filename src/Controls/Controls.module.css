@@ -1,0 +1,12 @@
+.controls {
+  border: 2px solid lightgray;
+  width: 200px;
+  position: absolute;
+  right: 5px;
+  top: 50px;
+}
+
+.handle {
+  border: 2px solid gray;
+  height: 20px;
+}
