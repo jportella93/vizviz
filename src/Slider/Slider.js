@@ -1,12 +1,9 @@
 import React from 'react';
 
-function Slider({ name, value, setValue, min = 0, max = 100, step = 1 }) {
-  // const [max, setMax] = useState(10)
-  // const [min, setMin] = useState(0)
-  // const [step, setStep] = useState(1)
+function Slider({ name, value, setValue, min = -2000, max = 2000, step = 1 }) {
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValue(Number(e.target.value));
   }
 
   return (
@@ -21,18 +18,6 @@ function Slider({ name, value, setValue, min = 0, max = 100, step = 1 }) {
         value={value}
         onChange={handleChange}
       />
-      {/* <label htmlFor="max">Max</label>
-      <input id="max" type="number" value={max} onChange={(e) => {
-        setMax(e.target.value);
-      }} />
-      <label htmlFor="min">Min</label>
-      <input id="min" type="number" value={min} onChange={(e) => {
-        setMin(e.target.value);
-      }} />
-      <label htmlFor="step">Step</label>
-      <input id="step" type="number" value={step} onChange={(e) => {
-        setStep(e.target.value);
-      }} /> */}
     </div>
   );
 }
