@@ -1,51 +1,51 @@
 import useWindowSize from '@rehooks/window-size';
-import React, { useState } from 'react';
-import styles from './App.module.css';
+import React from 'react';
+import createPersistedState from 'use-persisted-state';
 import Controls from './Controls/Controls';
-import D3Viz from './D3Viz/D3Viz';
-
+import P5Viz from './P5Viz/P5Viz';
+const useElementsState = createPersistedState('elements');
+const useMetaState = createPersistedState('meta');
 
 function App() {
-  const [fps, setFps] = useState(1000);
-  const [transitionTime, setTransitionTime,] = useState(1000 / 30);
-  const [elements, setElements] = useState({})
-  console.log(`---->: App -> elements`, elements)
+  const [elements, setElements] = useElementsState({})
+  const [meta, setMeta] = useMetaState(() => ({
+    rotate: 0,
+    translateX: 0,
+    translateY: 0,
+    bgColor: '#10232A'
+  }))
   const { innerHeight, innerWidth } = useWindowSize();
 
-  const addElement = (element) => {
-    setElements({ ...elements, [element.id]: element })
-  }
+  const elementUpdaters = {
+    add: (element) => {
+      setElements({ ...elements, [element.id]: element })
+    },
 
-  const updateElement = (id, key, value) => {
-    const updatedElements = { ...elements }
-    updatedElements[id][key] = value
-    setElements(updatedElements)
-  }
+    update: (id, key, value) => {
+      const updatedElements = { ...elements }
+      updatedElements[id][key] = value
+      setElements(updatedElements)
+    },
 
-  const removeElement = (id) => {
-    const updatedElements = { ...elements }
-    delete updatedElements[id]
-    setElements(updatedElements)
-  }
-
-  const controlsProps = {
-    fps, setFps,
-    transitionTime, setTransitionTime,
-    elements, addElement, updateElement, removeElement,
-    innerHeight, innerWidth
-  }
-
-  const data = {
-    elements,
-    window: { innerHeight, innerWidth },
-    meta: { fps, transitionTime }
+    remove: (id) => {
+      const updatedElements = { ...elements }
+      delete updatedElements[id]
+      setElements(updatedElements)
+    }
   }
 
   return (
-    <div className={styles.App}>
-      <D3Viz data={data} />
-      <Controls {...controlsProps} />
-    </div>
+    <>
+      <P5Viz elements={elements} meta={meta} innerHeight={innerHeight} innerWidth={innerWidth} />
+      <Controls
+        meta={meta}
+        setMeta={setMeta}
+        elements={elements}
+        elementUpdaters={elementUpdaters}
+        innerHeight={innerHeight}
+        innerWidth={innerWidth}
+      />
+    </>
   );
 }
 

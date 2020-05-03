@@ -1,5 +1,6 @@
 .controls {
   border: 2px solid lightgray;
+  background-color: black;
   width: 200px;
   position: absolute;
   right: 5px;
@@ -9,4 +10,5 @@
 .handle {
   border: 2px solid gray;
   height: 20px;
+  cursor: all-scroll;
 }

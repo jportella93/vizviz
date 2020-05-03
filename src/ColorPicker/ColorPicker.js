@@ -8,8 +8,8 @@ function ColorPicker({ name, color, setColor }) {
 
   return (
     <div>
-      <label htmlFor="color">Color</label><br />
-      <input type="color" id="color" value={color} onChange={handleChange} />
+      <label htmlFor={name}>{name}</label><br />
+      <input type="color" id={name} value={color} onChange={handleChange} />
     </div>
   );
 }

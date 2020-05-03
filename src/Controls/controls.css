@@ -1,0 +1,7 @@
+.controls .react-tabs__tab {
+  cursor: pointer;
+}
+
+.controls .react-tabs__tab--selected {
+  text-decoration: line-through;
+}
