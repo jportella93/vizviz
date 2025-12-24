@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Draggable from 'react-draggable';
 import Sketch from "react-p5";
-import { handle } from './P5viz.module.css';
+import styles from './P5viz.module.css';
 
 function P5Viz({ innerHeight, innerWidth, elements, meta }) {
   let tRef = useRef(1);
@@ -62,7 +62,7 @@ function P5Viz({ innerHeight, innerWidth, elements, meta }) {
 
   return (
     <Draggable>
-      <div className={handle}>
+      <div className={styles.handle}>
         <Sketch setup={setup} draw={draw} />
       </div>
     </Draggable>
