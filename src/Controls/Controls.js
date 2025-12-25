@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import CanvasControls from '../CanvasControls/CanvasControls';
 import LineControls from '../LineControls/LineControls';
 import './controls.css';
-import { controls, handle } from './Controls.module.css';
+import styles from './Controls.module.css';
 
 function Controls({
   innerHeight,
@@ -50,8 +50,8 @@ function Controls({
 
   return (
     <Draggable handle="#controlsDraggableHandle">
-      <div className={`${controls} controls`}>
-        <div className={handle} id="controlsDraggableHandle"></div>
+      <div className={`${styles.controls} controls`}>
+        <div className={styles.handle} id="controlsDraggableHandle"></div>
 
         <CanvasControls
           innerHeight={innerHeight}

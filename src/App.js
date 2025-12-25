@@ -1,14 +1,12 @@
-import useWindowSize from '@rehooks/window-size';
 import React from 'react';
-import createPersistedState from 'use-persisted-state';
 import Controls from './Controls/Controls';
 import P5Viz from './P5Viz/P5Viz';
-const useElementsState = createPersistedState('elements');
-const useMetaState = createPersistedState('meta');
+import usePersistedState from './hooks/usePersistedState';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
-  const [elements, setElements] = useElementsState({})
-  const [meta, setMeta] = useMetaState(() => ({
+  const [elements, setElements] = usePersistedState('elements', {})
+  const [meta, setMeta] = usePersistedState('meta', () => ({
     rotate: 0,
     translateX: 0,
     translateY: 0,
